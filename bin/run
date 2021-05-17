@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+cwd=$(pwd)
+
+docker run --rm -it \
+  $(docker.mount.app) \
+  $(docker.mount.data) \
+  $(docker.image) \
+  ${@:-"sh"}

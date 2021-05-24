@@ -1,7 +1,6 @@
 defmodule KDTree do
   import SweetXml
 
-
   def run(svg_file \\ "/data/points.svg") do
     svg_file
     |> KDTree.load()

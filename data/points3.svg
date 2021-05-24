@@ -59,6 +59,7 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+  <g>
   <g id="points">
     <circle
        style="fill:#ddff55;fill-opacity:1;stroke:none;stroke-width:12;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -88,4 +89,5 @@
        cy="71.580406"
        r="5"
        inkscape:label="#path815-3" />
+       </g>
 </svg>

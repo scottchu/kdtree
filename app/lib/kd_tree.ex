@@ -1,13 +1,19 @@
 defmodule KDTree do
   import SweetXml
 
-  def run(svg_file \\ "/data/points.svg") do
-    svg_file
-    |> KDTree.load()
-    |> elem(1)
-    |> KDTree.Points2D.load()
-    |> KDTree.Tree.build(KDTree.Points2D)
-    |> IO.inspect()
+  def run(svg_file \\ "/data/points2.svg") do
+    {pivot, points} = svg_file
+      |> KDTree.load()
+
+    pivot = pivot
+    |> KDTree.Point2D.load()
+
+    tree = points
+      |> KDTree.Points2D.load()
+      |> KDTree.Tree.build(KDTree.Points2D)
+
+      tree
+    |> KDTree.Tree.closest(pivot, KDTree.Points2D)
   end
 
   def load(svg_file) do
@@ -27,6 +33,7 @@ defmodule KDTree do
       x: ~x"./@cx"S,
       id: ~x"./@id"S
     )
+    |> IO.inspect()
     |> Enum.map(&transform/1)
     |> hd()
 
@@ -36,6 +43,7 @@ defmodule KDTree do
       x: ~x"./@cx"S,
       id: ~x"./@id"S
     )
+
     |> Enum.map(&transform/1)
 
     {pivot, points}

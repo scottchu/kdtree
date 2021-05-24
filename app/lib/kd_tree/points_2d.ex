@@ -41,4 +41,30 @@ defmodule KDTree.Points2D do
 
   def empty([]), do: true
   def empty(_), do: false
+
+  def distance(
+    %Point2D{x: x1, y: y1},
+    %Point2D{x: x2, y: y2}) do
+    dx = x1 - x2
+    dy = y1 - y2
+
+    :math.sqrt(:math.pow(dx, 2) + :math.pow(dy, 2))
+  end
+
+  def distance(
+    %Point2D{} = lhs,
+    %Point2D{} = rhs,
+    depth
+  ) do
+    axis = axis(depth)
+    abs(Point2D.value(lhs, axis) - Point2D.value(rhs, axis))
+  end
+
+  def lt(
+    %Point2D{} = lhs,
+    %Point2D{} = rhs,
+    depth) do
+      axis = axis(depth)
+      Point2D.value(lhs, axis) < Point2D.value(rhs, axis)
+  end
 end
